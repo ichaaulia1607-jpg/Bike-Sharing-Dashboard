@@ -38,7 +38,7 @@ pip install -r requirements.txt
 ```
 # Cara Menjalankan Dashboard
 ```bash
-streamlit run dashboard/dashboard.py
+streamlit run dashboard.py
 ```
 ## Fitur Interaktif
 Dashboard ini memiliki filter **Rentang Waktu** di sidebar yang akan merubah tampilan grafik secara dinamis.

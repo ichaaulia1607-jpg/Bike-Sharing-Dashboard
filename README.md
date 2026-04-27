@@ -22,18 +22,21 @@ Proyek ini bertujuan untuk menganalisis data penyewaan sepeda guna memahami pola
 ├── requirements.txt       # Daftar library Python yang dibutuhkan
 └── url.txt                # Tautan dashboard (jika sudah di-deploy)
 ```
-```bash
+
 # Setup Environment - Anaconda
+```bash
 conda create --name main-ds python=3.9
 conda activate main-ds
 pip install -r requirements.txt
 ```
+
+# Setup Environment - Terminal/Command Prompt
 ```bash
-#Setup Environment - Terminal/Command Prompt
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 ```
+# Cara Menjalankan Dashboard
 ```bash
 streamlit run dashboard/dashboard.py
 ```

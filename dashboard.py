@@ -7,7 +7,7 @@ import streamlit as st
 st.set_page_config(page_title="Bike Sharing Dashboard", layout="wide")
 sns.set(style='whitegrid')
 
-# --- 1. Fungsi Load Data dengan Penanganan Error ---
+# --- 1. Fungsi Load Data Sederhana ---
 @st.cache_data
 def load_data():
     try:
@@ -19,13 +19,12 @@ def load_data():
         hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
         
         return day_df, hour_df
-    except FileNotFoundError:
-        st.error("Gagal memuat data. Pastikan file 'main_data.csv' dan 'hour_data.csv' sudah ada di folder yang sama.")
+    except Exception as e:
+        st.error(f"Gagal memuat data: {e}")
         return None, None
 
 day_df, hour_df = load_data()
 
-# Pastikan data berhasil dimuat sebelum lanjut
 if day_df is not None and hour_df is not None:
     
     # --- 2. Sidebar Filter ---
@@ -49,20 +48,19 @@ if day_df is not None and hour_df is not None:
         start_date, end_date = date_range
         main_day_df = day_df[(day_df["dteday"] >= pd.to_datetime(start_date)) & 
                              (day_df["dteday"] <= pd.to_datetime(end_date))]
-        main_hour_df = hour_df[(hour_df["dteday"] >= pd.to_datetime(start_date)) & 
-                               (hour_df["dteday"] <= pd.to_datetime(end_date))]
     else:
         main_day_df = day_df
-        main_hour_df = hour_df
 
     # --- 3. Main Page ---
     st.title('Bike Sharing Analytics Dashboard 🚲')
 
-    # Visualisasi 1: Cuaca
+    # Visualisasi 1: Cuaca 
     st.subheader('Penyewaan Sepeda berdasarkan Kondisi Cuaca')
     weather_rentals = main_day_df.groupby(by="weathersit").cnt.mean().reset_index()
     
     fig, ax = plt.subplots(figsize=(10, 6))
+    
+    # Warna seragam kecuali yang tertinggi sebagai PETUNJUK
     colors = ["#D3D3D3"] * len(weather_rentals)
     if not weather_rentals.empty:
         max_idx = weather_rentals['cnt'].idxmax()
@@ -80,19 +78,23 @@ if day_df is not None and hour_df is not None:
     ax.set_xlabel('Kondisi Cuaca (1: Cerah, 2: Mendung, 3: Hujan)')
     ax.set_ylabel('Rata-rata Penyewaan')
     st.pyplot(fig)
+    
+    with st.expander("Lihat Insight"):
+        st.write("Insight: Cuaca cerah (1) memiliki rata-rata penyewaan tertinggi. Warna biru pada grafik berfungsi sebagai penanda visual utama untuk kategori terbaik.")
 
     # Visualisasi 2: Tren Jam (Format Jam 00:00)
     st.subheader('Tren Penyewaan per Jam (Hari Kerja)')
-    workingday_df = main_hour_df[main_hour_df["workingday"] == 1]
+    workingday_df = hour_df[hour_df["workingday"] == 1]
     hourly_registered = workingday_df.groupby(by="hr").registered.mean().reset_index()
 
-    fig, ax = plt.subplots(figsize=(12, 6))
-    sns.lineplot(x='hr', y='registered', data=hourly_registered, marker='o', color='#72BCD4', ax=ax)
+    fig2, ax2 = plt.subplots(figsize=(12, 6))
+    sns.lineplot(x='hr', y='registered', data=hourly_registered, marker='o', color='#72BCD4', ax=ax2)
   
+    # Format Jam
     hours_label = [f"{int(x):02d}:00" for x in range(0, 24)]
-    ax.set_xticks(range(0, 24))
-    ax.set_xticklabels(hours_label, rotation=45)
+    ax2.set_xticks(range(0, 24))
+    ax2.set_xticklabels(hours_label, rotation=45)
     
-    st.pyplot(fig)
+    st.pyplot(fig2)
 
     st.caption('Copyright (c) Icha Aulia Putri 2026')

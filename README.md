@@ -11,16 +11,15 @@ Proyek ini bertujuan untuk menganalisis data penyewaan sepeda guna memahami pola
 ## Struktur Folder
 ```text
 .
-├── dashboard/
-│   ├── dashboard.py       # File utama aplikasi Streamlit
-│   └── main_data.csv      # Data hasil pembersihan untuk dashboard
 ├── data/
-│   ├── day.csv            # Dataset harian asli
-│   └── hour.csv           # Dataset per jam asli
-├── notebook.ipynb         # Dokumentasi proses analisis data (Notebook)
-├── README.md              # Dokumentasi proyek
-├── requirements.txt       # Daftar library Python yang dibutuhkan
-└── url.txt                # Tautan dashboard (jika sudah di-deploy)
+│   ├── day.csv
+│   └── hour.csv
+├── dashboard.py       # File utama Streamlit
+├── main_data.csv      # Data untuk dashboard
+├── notebook.ipynb
+├── README.md
+├── requirements.txt
+└── url.txt
 ```
 
 # Setup Environment - Anaconda

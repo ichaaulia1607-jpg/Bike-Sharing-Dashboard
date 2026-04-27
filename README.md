@@ -1,42 +1,41 @@
 # Proyek Analisis Data: Bike Sharing Dataset 🚲
 
-## Deskripsi
-Proyek ini merupakan hasil analisis data pada "Bike Sharing Dataset" yang berfokus pada pemahaman pola penyewaan sepeda berdasarkan kondisi cuaca dan tren waktu. Proyek ini mencakup seluruh siklus analisis data, mulai dari pengumpulan data (*Data Wrangling*), pembersihan data (*Cleaning*), eksplorasi (*EDA*), hingga pembuatan dashboard interaktif menggunakan Streamlit.
+## Identitas
+* **Nama**: Icha Aulia Putri
+* **Email**: ichaaulia1607@gmail.com
+* **ID Dicoding**: cdcc220d6x2697
 
-## Pertanyaan Bisnis
-1. Bagaimana pengaruh kondisi cuaca (*weathersit*) terhadap rata-rata jumlah penyewaan sepeda harian?
-2. Bagaimana tren penyewaan sepeda oleh pengguna terdaftar (*registered*) pada setiap jam di hari kerja (*working day*)?
+## Deskripsi
+Proyek ini bertujuan untuk menganalisis data penyewaan sepeda guna memahami pola penggunaan berdasarkan kondisi cuaca dan tren waktu. Hasil analisis ini disajikan dalam dashboard interaktif yang dibangun menggunakan library Streamlit.
 
 ## Struktur Folder
 ```text
 .
 ├── dashboard/
 │   ├── dashboard.py       # File utama aplikasi Streamlit
-│   └── main_data.csv      # Data yang telah dibersihkan untuk dashboard
+│   └── main_data.csv      # Data hasil pembersihan untuk dashboard
 ├── data/
 │   ├── day.csv            # Dataset harian asli
 │   └── hour.csv           # Dataset per jam asli
 ├── notebook.ipynb         # Dokumentasi proses analisis data (Notebook)
 ├── README.md              # Dokumentasi proyek
-├── requirements.txt       # Daftar pustaka (library) Python yang dibutuhkan
+├── requirements.txt       # Daftar library Python yang dibutuhkan
 └── url.txt                # Tautan dashboard (jika sudah di-deploy)
 ```
-
-# Membuat environment baru
+```bash
+# Setup Environment - Anaconda
 conda create --name main-ds python=3.9
-
-# Mengaktifkan environment
 conda activate main-ds
-
-# Instalasi library yang dibutuhkan
 pip install -r requirements.txt
-
-# Membuat virtual environment
+```
+```bash
+#Setup Environment - Terminal/Command Prompt
 python -m venv venv
-
-# Mengaktifkan virtual environment
-# Windows:
 venv\Scripts\activate
-
-# Instalasi library
 pip install -r requirements.txt
+```
+```bash
+streamlit run dashboard/dashboard.py
+```
+## Fitur Interaktif
+Dashboard ini memiliki filter **Rentang Waktu** di sidebar yang akan merubah tampilan grafik secara dinamis.

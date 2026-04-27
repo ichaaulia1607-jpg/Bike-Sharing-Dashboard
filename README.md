@@ -3,7 +3,7 @@
 ## Identitas
 * **Nama**: Icha Aulia Putri
 * **Email**: ichaaulia1607@gmail.com
-* **ID Dicoding**: cdcc220d6x2697
+* **ID Dicoding**: CDCC220D6X2697
 
 ## Deskripsi
 Proyek ini bertujuan untuk menganalisis data penyewaan sepeda guna memahami pola penggunaan berdasarkan kondisi cuaca dan tren waktu. Hasil analisis ini disajikan dalam dashboard interaktif yang dibangun menggunakan library Streamlit.

@@ -54,7 +54,7 @@ with st.sidebar:
     st.write("---")
     # Menambahkan ID Dicoding sesuai instruksi reviewer
     st.write("**Nama:** Icha Aulia Putri")
-    st.write("**ID Dicoding:** cdcc220d6x2697")
+    st.write("**ID Dicoding:** CDCC220D6X2697")
 
 # Menghubungkan Filter Tanggal ke Data
 main_df = day_df[(day_df["dteday"] >= str(start_date)) & 
